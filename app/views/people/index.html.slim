@@ -1,0 +1,27 @@
+div.container
+  div.section
+    h1 Lista de Personas 
+
+  div.divider
+
+  div.section
+    - if @people.any?
+      table#people.highlight.responsive-table
+        tr
+          th Nombre
+          th Apellido
+          th Cedula 
+          th Fecha de Nacimiento
+        - @people.each do |p|
+          tr
+            td.nombre = p.name
+            td.apellido = p.last_name
+            td.cedula = p.ci_number
+            td.fecha = p.birthday
+            td.addresses = link_to person_addresses_path(p), action: 'get', class: "btn-floating btn-large waves-effect waves-light green"
+              i.material-icons.medium home
+            td.edit = link_to edit_person_path(p), class: "btn-floating btn-large waves-effect waves-light blue"
+                i.material-icons.medium mode_edit
+    div.fixed-action-button.right-align
+      = link_to new_person_path, class: "btn-floating btn-large waves-effect waves-light red"
+        i.material-icons.large add

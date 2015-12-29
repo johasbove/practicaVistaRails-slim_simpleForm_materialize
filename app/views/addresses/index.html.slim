@@ -1,0 +1,27 @@
+div.container
+  div.section
+    h1 Direcciones de #{@person.full_name}
+
+  div.divider
+
+  div.section
+    - if @addresses.any?
+      table#addresses.highlight.responsive-table
+        tr
+          th Calle
+          th Ciudad
+          th Estado
+          th Pais
+          th Tipo de Direccion
+          - for address in @addresses
+            tr
+              td.calle = address.street
+              td.ciudad = address.city
+              td.estado = address.state
+              td.pais = address.country
+              td.tipo = address.address_type.name
+              td.edit = link_to edit_person_address_path(@person, address), class: "btn-floating btn-large waves-effect waves-light blue"
+                i.material-icons.medium mode_edit
+    div.fixed-action-button.right-align
+      = link_to "addresses/new", class: "btn-floating btn-large waves-effect waves-light red"
+        i.material-icons.large add

@@ -1,0 +1,33 @@
+div.container
+  div.row
+    div.col.s12
+      - if @person.new_record?
+        = simple_form_for @person, url: people_path, defaults: {input_html: {class: 'validate'}} do |f|
+          div.row
+            div.input-field.col.s6
+              = f.input :name
+            div.input-field.col.s6
+              = f.input :last_name, input_html: {class: ''}
+          div.row
+            div.input-field.col.s6
+              = f.input :ci_number
+            div.input-field.col.s6
+              = f.input :birthday
+          div.row
+            div.input-field.col.s12.right-align
+              = f.button :submit
+      - else
+        = simple_form_for @person, url: person_path, defaults: {label: false} do |f|
+          div.row
+            div.input-field.col.s6
+              = f.input :name
+            div.input-field.col.s6
+              = f.input :last_name, input_html: {class: ''}
+          div.row
+            div.input-field.col.s6
+              = f.input :ci_number
+            div.input-field.col.s6
+              = f.input :birthday
+          div.row
+            div.input-field.col.s12.right-align
+              = f.button :submit

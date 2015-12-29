@@ -1,0 +1,39 @@
+div.container
+  div.row
+    div.col.s12
+      - if @address.new_record?
+        = simple_form_for @address, url: person_addresses_path, defaults: {input_html: {class: 'validate'}} do |f|
+          div.row
+            div.input-field.col.s6
+              = f.input :street
+            div.input-field.col.s6
+              = f.input :city, input_html: {class: ''}
+          div.row
+            div.input-field.col.s6
+              = f.input :state
+            div.input-field.col.s6
+              = f.input :country
+          div.row
+            div.input-field.col.s12
+              = f.association :address_type, collection: @address_types, label: false, input_html: {class: ''}
+          div.row
+            div.input-field.col.s12.right-align
+              = f.button :submit
+      - else
+        = simple_form_for @address, url: person_address_path, defaults: {label:false} do |f|
+          div.row
+            div.input-field.col.s6
+              = f.input :street
+            div.input-field.col.s6
+              = f.input :city, input_html: {class: ''}
+          div.row
+            div.input-field.col.s6
+              = f.input :state
+            div.input-field.col.s6
+              = f.input :country
+          div.row
+            div.input-field.col.s12
+              = f.association :address_type, collection: @address_types, selected: @address.address_type
+          div.row
+            div.input-field.col.s12.right-align
+              = f.button :submit
